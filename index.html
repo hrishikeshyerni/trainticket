@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Train Ticket Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .booking-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      padding: 30px;
+      width: 400px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      outline: none;
+      transition: 0.3s;
+    }
+    input:focus, select:focus {
+      border-color: #4facfe;
+      box-shadow: 0 0 5px rgba(79,172,254,0.5);
+    }
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #4facfe;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #00c6fb;
+    }
+    .confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e0f7fa;
+      border-radius: 6px;
+      color: #00796b;
+      display: none;
+      animation: slideUp 0.5s ease-in-out;
+    }
+    @keyframes slideUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-card">
+    <h2>🚆 Train Ticket Booking</h2>
+    <form id="bookingForm">
+      <label for="from">From Station</label>
+      <input type="text" id="from" placeholder="Enter departure station" required>
+      
+      <label for="to">To Station</label>
+      <input type="text" id="to" placeholder="Enter destination station" required>
+      
+      <label for="date">Journey Date</label>
+      <input type="date" id="date" required>
+      
+      <label for="class">Class</label>
+      <select id="class" required>
+        <option value="">Select Class</option>
+        <option value="Sleeper">Sleeper</option>
+        <option value="AC 3 Tier">AC 3 Tier</option>
+        <option value="AC 2 Tier">AC 2 Tier</option>
+        <option value="First Class">First Class</option>
+      </select>
+      
+      <label for="passengers">Passengers</label>
+      <input type="number" id="passengers" min="1" max="6" value="1" required>
+      
+      <button type="submit" class="btn">Book Ticket</button>
+    </form>
+    <div class="confirmation" id="confirmationBox">
+      ✅ Your train ticket has been booked successfully!
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const confirmationBox = document.getElementById('confirmationBox');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      confirmationBox.style.display = 'block';
+      confirmationBox.innerHTML = `
+        ✅ Ticket Confirmed! <br>
+        From: ${document.getElementById('from').value} <br>
+        To: ${document.getElementById('to').value} <br>
+        Date: ${document.getElementById('date').value} <br>
+        Class: ${document.getElementById('class').value} <br>
+        Passengers: ${document.getElementById('passengers').value}
+      `;
+    });
+  </script>
+</body>
+</html>
